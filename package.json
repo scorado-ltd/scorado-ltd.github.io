@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "concurrently \"hugo server\" \"npx tailwindcss -i ./static/styles/styles.css -o ./static/dist/output.css --watch\""
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.12",
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-go-template": "^0.0.15",
+    "tailwindcss": "^3.4.3"
+  }
+}

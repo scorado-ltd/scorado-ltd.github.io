@@ -1,0 +1,11 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+canonifyURLs = true
+
+[params]
+  dateFormat = "Jan 2, 2006"
+
+[taxonomies]
+  author = "authors"
+  categories = "categories"

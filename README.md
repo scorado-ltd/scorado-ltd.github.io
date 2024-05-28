@@ -1,1 +1,3 @@
-# scorado-ltd.github.io
+Run
+
+hugo server
