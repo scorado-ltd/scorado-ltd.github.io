@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="prose dark:prose-invert mx-auto">
+  <h1>{{.Title}}</h1>
+  <p>{{.Params.description}}</p>
+  <div>
+    <span>
+      {{ range (.GetTerms "authors")}}
+      <a href="{{.Permalink}}">{{ .Name }}</a>
+      {{end}}
+    </span>
+    {{ range (.GetTerms "categories")}}
+    <a href="{{.Permalink}}">{{ .Name }}</a>
+    {{end}}
+  </div>
+  <time>{{ dateFormat .Site.Params.dateFormat .Date }}</time>
+</div>
+<div class="prose dark:prose-invert mx-auto py-10">{{ .Content }}</div>
+<div class="prose dark:prose-invert mx-auto pb-10">
+  <div>
+    <p class="my-0">
+      This article was written by {{ range (.GetTerms "authors")}}
+      <a href="{{.Permalink}}">{{ .Name }}</a>
+      {{end}}
+    </p>
+  </div>
+</div>
+{{ end }}

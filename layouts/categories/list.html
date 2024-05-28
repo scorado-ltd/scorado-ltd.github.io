@@ -1,0 +1,56 @@
+{{ define "main" }} {{ if eq .RelPermalink "/categories/"}}
+<h1 class="text-2xl">Categories</h1>
+<div class="space-x-2 py-2">
+  {{ range $.Site.Taxonomies.categories.ByCount }}
+  <a
+    class="inline-block bg-tertiary text-primary rounded-md px-4 py-1 font-medium whitespace-nowrap"
+    href="/categories/{{ .Name }}"
+  >
+    {{ .Name }} <small>({{.Count}}) Articles</small>
+  </a>
+  {{end}}
+</div>
+{{ else }}
+<div>
+  <div class="pb-4">
+    <h1 class="text-3xl">Showing results for {{ .Name}}</h1>
+  </div>
+  {{ range .Paginator.Pages }}
+  <div class="flex">
+    <img
+      class="w-32 h-32"
+      src="{{ .Params.image }}"
+      alt="{{ .Params.title }}"
+      loading="lazy"
+    />
+    <div class="flex flex-wrap pl-4">
+      <div class="w-full">
+        <h1 class="text-3xl"><a href="{{.Permalink}}">{{.Title}}</a></h1>
+        <time>{{ dateFormat $.Site.Params.dateFormat .Date }}</time>
+      </div>
+      <div class="flex w-full items-center">
+        <img
+          class="w-8 h-8 rounded-full"
+          src="{{ .Params.avatar }}"
+          alt="{{ .Params.authors }}"
+          loading="lazy"
+        />
+        {{ range(.GetTerms "authors")}}
+        <a class="pl-3" href="{{ .Permalink}}">{{.Name}}</a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="flex space-x-4 py-10">
+    {{ range (.GetTerms "categories")}}
+    <a
+      class="inline-block bg-tertiary text-primary rounded-md px-4 py-1 font-medium whitespace-nowrap"
+      href="{{ .Permalink}} "
+    >
+      {{.Name}}
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+{{end}} {{ end }}
