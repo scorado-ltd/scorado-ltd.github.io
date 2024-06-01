@@ -1,35 +1,51 @@
 {{ define "main" }}
-<div>
-  <div class="flex items-center gap-20 py-20">
-    <div class="flex flex-col mb-6 space-y-6 w-full">
-      <h1 class="text-4xl">Welcome to the Scorado blog</h1>
-      <p>
-        lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
-    </div>
-    <!-- Add image here -->
-    <div
-      class="flex items-center justify-center w-full h-72 bg-gray-300 rounded dark:bg-gray-700 animate-pulse"
-    >
-      <svg
-        class="w-10 h-10 text-gray-200 dark:text-gray-600"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 20 18"
-      >
-        <path
-          d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"
+<div class="grid">
+  <!-- Hero blog -->
+  {{ with .GetPage "./posts/my-first-post" }}
+  <div class="grid grid-cols-12 gap-5 py-20">
+    <div class="col-span-4 flex items-center">
+      <a class="w-full" href="{{ .RelPermalink }}">
+        <img
+          class="w-full rounded-2xl object-cover h-96"
+          src="{{ .Params.image }}"
+          alt="{{ .Params.title }}"
+          loading="lazy"
         />
-      </svg>
+      </a>
+    </div>
+    <div class="col-span-8 flex items-center w-full px-10">
+      <div class="w-full">
+        <div>
+          <!-- Featured Post -->
+          <h1 class="text-3xl">{{ .Title }}</h1>
+          <!-- TODO: Change colour -->
+          <p class="pt-10 text-[#98989A]">{{ .Description }}</p>
+        </div>
+        <div class="flex space-x-10 py-10">
+          <div>
+            <p class="text-[#98989A]">Category</p>
+            <div>
+              {{ range .Params.categories }}
+              <p>{{ . }}</p>
+              {{ end }}
+            </div>
+          </div>
+          <div>
+            <p class="text-[#98989A]">Publication Date</p>
+            <p>{{ .Date.Format "January 2, 2006" }}</p>
+          </div>
+          <div>
+            <p class="text-[#98989A]">Author</p>
+            {{ range .Params.authors }}
+            <p>{{ . }}</p>
+            {{ end }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  {{ end }}
+
   <!-- List of blogs -->
   <div class="grid grid-cols-4 grid-rows-2 gap-x-10">
     {{ range .Paginator.Pages }}

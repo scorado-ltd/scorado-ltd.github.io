@@ -2,9 +2,9 @@
 title = "The Art of Negotiating with Hutts: Tips from a Seasoned Smuggler"
 date = 2024-04-25T18:07:36+01:00
 draft = false
-description = "This is a description"
+description = "Learn the art of negotiating with Hutts using these seasoned smuggler tips, from knowing your worth to mastering key Huttese phrases."
 image = "/images/thumbnail.jpg"
-categories = ["General", "Coding"]
+categories = ["Coding"]
 authors = ["Laurenz"]
 avatar = "/images/profile.jpg"
 +++
