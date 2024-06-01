@@ -2,11 +2,11 @@
 <div class="grid">
   <!-- Hero blog -->
   {{ with .GetPage "./posts/my-first-post" }}
-  <div class="grid grid-cols-12 gap-5 py-20">
+  <div class="grid grid-cols-12 gap-5 py-20 max-w-screen-xl mx-auto px-10">
     <div class="col-span-4 flex items-center">
       <a class="w-full" href="{{ .RelPermalink }}">
         <img
-          class="w-full rounded-2xl object-cover h-96"
+          class="w-full h-80 rounded-2xl object-cover"
           src="{{ .Params.image }}"
           alt="{{ .Params.title }}"
           loading="lazy"
@@ -46,13 +46,15 @@
   </div>
   {{ end }}
 
-  <!-- List of blogs -->
-  <div class="grid grid-cols-4 grid-rows-2 gap-x-10">
-    {{ range .Paginator.Pages }}
-    <div>
+  <!-- Divider -->
+  <div class="h-0.5 bg-secondary w-full"></div>
+
+  <div class="grid grid-cols-12 gap-5 py-20 max-w-screen-xl mx-auto px-10">
+    {{ range first 3 .Paginator.Pages }}
+    <div class="col-span-4">
       <a href="{{.Permalink}}">
         <img
-          class="w-full object-cover h-64"
+          class="w-full object-cover rounded-2xl aspect-video"
           src="{{ .Params.image }}"
           alt="{{ .Params.title }}"
           loading="lazy"
@@ -74,41 +76,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="flex"> -->
-    <!--   <img -->
-    <!--     class="w-32 h-32" -->
-    <!--     src="{{ .Params.image }}" -->
-    <!--     alt="{{ .Params.title }}" -->
-    <!--     loading="lazy" -->
-    <!--   /> -->
-    <!--   <div class="flex flex-wrap pl-4"> -->
-    <!--     <div class="w-full"> -->
-    <!--       <h1 class="text-3xl"><a href="{{.Permalink}}">{{.Title}}</a></h1> -->
-    <!--       <time>{{ dateFormat $.Site.Params.dateFormat .Date }}</time> -->
-    <!--     </div> -->
-    <!--     <div class="flex w-full items-center"> -->
-    <!--       <img -->
-    <!--         class="w-8 h-8 rounded-full" -->
-    <!--         src="{{ .Params.avatar }}" -->
-    <!--         alt="{{ .Params.authors }}" -->
-    <!--         loading="lazy" -->
-    <!--       /> -->
-    <!--       {{ range(.GetTerms "authors")}} -->
-    <!--       <a class="pl-3" href="{{ .Permalink}}">{{.Name}}</a> -->
-    <!--       {{ end }} -->
-    <!--     </div> -->
-    <!--   </div> -->
-    <!-- </div> -->
-    <!-- <div class="flex space-x-4 py-10"> -->
-    <!--   {{ range (.GetTerms "categories")}} -->
-    <!--   <a -->
-    <!--     class="inline-block bg-tertiary text-primary rounded-md px-4 py-1 font-medium whitespace-nowrap" -->
-    <!--     href="{{ .Permalink}}" -->
-    <!--   > -->
-    <!--     {{.Name}} -->
-    <!--   </a> -->
-    <!--   {{ end }} -->
-    <!-- </div> -->
     {{ end }}
   </div>
 </div>
