@@ -19,15 +19,16 @@
           <!-- Featured Post -->
           <h1 class="text-3xl">{{ .Title }}</h1>
           <!-- TODO: Change colour -->
-          <p class="pt-10 text-[#98989A]">{{ .Description }}</p>
+          <p class="pt-4 text-[#98989A]">{{ .Description }}</p>
         </div>
         <div class="flex space-x-10 py-10">
           <div>
             <p class="text-[#98989A]">Category</p>
-            <div>
-              {{ range .Params.categories }}
-              <p>{{ . }}</p>
-              {{ end }}
+            <div class="flex space-x-1">
+              {{ $length := len .Params.categories }} {{ range $index, $element
+              := .Params.categories }}
+              <p>{{ $element }}</p>
+              {{ if lt (add $index 1) $length }},{{ end }} {{ end }}
             </div>
           </div>
           <div>
@@ -60,19 +61,14 @@
           loading="lazy"
         />
       </a>
-      <div class="mt-2">
+      <div class="mt-3">
         <h1 class="font-medium"><a href="{{.Permalink}}">{{.Title}}</a></h1>
-        <time>{{ dateFormat $.Site.Params.dateFormat .Date }}</time>
-        <div class="flex w-full mt-4">
-          <img
-            class="w-8 h-8 rounded-full"
-            src="{{ .Params.avatar }}"
-            alt="{{ .Params.authors }}"
-            loading="lazy"
-          />
-          {{ range(.GetTerms "authors")}}
-          <a class="pl-3" href="{{ .Permalink}}">{{.Name}}</a>
-          {{ end }}
+        <!-- <time>{{ dateFormat $.Site.Params.dateFormat .Date }}</time> -->
+        <div class="flex items-center space-x-1 w-full mt-1 text-[#98989A]">
+          {{ $length := len .Params.categories }} {{ range $index, $element :=
+          .Params.categories }}
+          <p>{{ $element }}</p>
+          {{ if lt (add $index 1) $length }},{{ end }} {{ end }}
         </div>
       </div>
     </div>
